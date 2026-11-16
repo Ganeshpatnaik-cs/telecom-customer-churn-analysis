@@ -1,0 +1,98 @@
+Overall churn rate: 26.8%  (1,888 of 7,043 customers)
+
+Churn by Contract:
+                churn_%  customers
+Contract                          
+Month-to-month     43.1       3890
+One year           12.2       1493
+Two year            1.8       1660
+
+Churn by InternetService:
+                 churn_%  customers
+InternetService                    
+Fiber optic         39.7       3031
+DSL                 24.2       2376
+No                   6.7       1636
+
+Churn by PaymentMethod:
+                           churn_%  customers
+PaymentMethod                                
+Electronic check              30.7       2349
+Credit card (automatic)       25.2       1513
+Bank transfer (automatic)     24.9       1584
+Mailed check                  24.4       1597
+
+Churn by TechSupport:
+                     churn_%  customers
+TechSupport                            
+No                      34.4       3842
+Yes                     29.1       1565
+No internet service      6.7       1636
+
+Churn by OnlineSecurity:
+                     churn_%  customers
+OnlineSecurity                         
+No                      34.6       3818
+Yes                     28.8       1589
+No internet service      6.7       1636
+
+Churn by SeniorCitizen:
+               churn_%  customers
+SeniorCitizen                    
+Yes               32.3       1096
+No                25.8       5947
+
+Churn % by tenure band (months):
+TenureBand
+0-12     50.0
+13-24    41.5
+25-48    17.4
+49-72     4.5
+
+============================================================
+MODEL RESULTS (20% held-out test set)
+============================================================
+
+Logistic Regression  |  ROC-AUC = 0.871
+              precision    recall  f1-score   support
+
+      Stayed      0.931     0.771     0.844      1031
+     Churned      0.575     0.844     0.684       378
+
+    accuracy                          0.791      1409
+   macro avg      0.753     0.808     0.764      1409
+weighted avg      0.835     0.791     0.801      1409
+Confusion matrix [[TN FP],[FN TP]]:
+[[795 236]
+ [ 59 319]]
+
+Random Forest  |  ROC-AUC = 0.862
+              precision    recall  f1-score   support
+
+      Stayed      0.917     0.771     0.838      1031
+     Churned      0.565     0.810     0.665       378
+
+    accuracy                          0.781      1409
+   macro avg      0.741     0.790     0.751      1409
+weighted avg      0.822     0.781     0.791      1409
+Confusion matrix [[TN FP],[FN TP]]:
+[[795 236]
+ [ 72 306]]
+
+Top factors RAISING churn risk (logistic regression):
+Contract_Month-to-month           1.303
+InternetService_Fiber optic       0.481
+PaymentMethod_Electronic check    0.290
+OnlineSecurity_No                 0.215
+TechSupport_No                    0.185
+MonthlyCharges                    0.138
+
+Top factors LOWERING churn risk:
+Contract_Two year                  -1.469
+tenure                             -0.581
+InternetService_DSL                -0.444
+Dependents_Yes                     -0.322
+SeniorCitizen_No                   -0.282
+OnlineBackup_No internet service   -0.256
+
+High-risk customers: 2,467 | their monthly revenue: 210,452 | actual churn rate in this group: 59.1%
